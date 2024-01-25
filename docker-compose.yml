@@ -36,30 +36,48 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     ports:
-      - "3306"
+      - "3306:3306"
     volumes:
       # create volumes for use
       - ./volumes/percona-server/data/:/var/lib/mysql
       # bind mount my local my.cnf
-      # - $PWD/my.cnf:/etc/my.cnf.d/my.cnf
+      # ./volume/conf/my.cnf:/etc/my.cnf.d/my.cnf  networks:
+    db-network:
+      networks:
+   
 
 # uncomment sections below if you want to enable PMM
   pmm-server:
     image: percona/pmm-server:latest
-   ports:
-     - "443:443"
-   environment:
-     - SERVER_USER=pmm
-     - SERVER_PASSWORD=pmm
+    ports:
+      - "443:443"
+    environment:
+      - SERVER_USER=pmm
+      - SERVER_PASSWORD=pmm
   pmm-client-ps:
     image: perconalab/pmm-client:latest
-   environment:
+    environment:
      - PMM_SERVER=pmm-server:443
      - PMM_USER=pmm
-     - PMM_PASSWORD=${MM_PASSWORD}
+     - PMM_PASSWORD=${PMM_PASSWORD}
      - DB_TYPE=mysql
      - DB_HOST=percona-server
      - DB_PORT=3306
      - DB_USER=root
      - DB_PASSWORD=${MYSQL_ROOT_PASSWORD}
+  networks:
+    db-network:
+
+networks:
+  db-network:
+    driver: bridge
+    driver_opts:
+      com.docker.network.bridge.name: br-db
+    enable_ipv6: false
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.22.1.0/24
+        - subnet: fd4d:6169:6c63:6f77::/64
+
     
