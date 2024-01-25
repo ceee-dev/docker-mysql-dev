@@ -74,7 +74,7 @@ services:
       - db-network
   
   webtop: 
-    image: lscr.io/linuxserver/ubuntu-openbox
+    image: lscr.io/linuxserver/ubuntu-openbox:latest
     container_name: webtop
     security_opt:
       - seccomp:unconfined #optional
