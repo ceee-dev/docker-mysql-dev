@@ -49,7 +49,6 @@ services:
     networks:
       - db-network   
 
-# uncomment sections below if you want to enable PMM
   pmm-server:
     image: percona/pmm-server:latest
     ports:
@@ -63,16 +62,16 @@ services:
   pmm-client-ps:
     image: perconalab/pmm-client:latest
     environment:
-     - PMM_SERVER=pmm-server:443
-     - PMM_USER=pmm
-     - PMM_PASSWORD=${PMM_PASSWORD}
-     - DB_TYPE=mysql
-     - DB_HOST=percona-server
-     - DB_PORT=3306
-     - DB_USER=root
-     - DB_PASSWORD=${MYSQL_ROOT_PASSWORD}
-  networks:
-    - db-network
+      - PMM_SERVER=pmm-server:443
+      - PMM_USER=pmm
+      - PMM_PASSWORD=${PMM_PASSWORD}
+      - DB_TYPE=mysql
+      - DB_HOST=percona-server
+      - DB_PORT=3306
+      -  DB_USER=root
+      - DB_PASSWORD=${MYSQL_ROOT_PASSWORD}
+    networks:
+      - db-network
   
   webtop: 
     image: lscr.io/linuxserver/ubuntu-openbox
