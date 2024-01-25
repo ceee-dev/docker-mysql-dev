@@ -27,8 +27,8 @@ services:
     volumes:
       - ./volume/mysql-workbench/config:/config
     ports:
-      - 3000:3000
-      - 3001:3001
+      - 3002:3000
+      - 3003:3001
     cap_add:
       - IPC_LOCK
     restart: unless-stopped
@@ -73,6 +73,28 @@ services:
      - DB_PASSWORD=${MYSQL_ROOT_PASSWORD}
   networks:
     - db-network
+  
+  webtop: 
+    image: lscr.io/linuxserver/ubuntu-openbox
+    container_name: webtop
+    security_opt:
+      - seccomp:unconfined #optional
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=${TZ}
+      - SUBFOLDER=/ #optional
+      - TITLE=Webtop #optional
+    volumes:
+      - ./volume/config:/config
+      - /var/run/docker.sock:/var/run/docker.sock #optional
+    ports:
+      - 3000:3000
+      - 3001:3001
+    devices:
+      - /dev/dri:/dev/dri #optional
+    shm_size: "1gb" #optional
+    restart: unless-stopped
 
 networks:
   db-network:
