@@ -43,7 +43,7 @@ services:
       - "3306:3306"
     volumes:
       # create volumes for use
-      - ./volumes/percona-server/data/:/var/lib/mysql
+      - ./volume/mysql-server/data/:/var/lib/mysql
       # bind mount my local my.cnf
       # ./volume/conf/my.cnf:/etc/my.cnf.d/my.cnf  networks:
     networks:
