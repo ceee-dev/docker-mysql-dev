@@ -68,7 +68,7 @@ services:
       - DB_TYPE=mysql
       - DB_HOST=percona-server
       - DB_PORT=3306
-      -  DB_USER=root
+      - DB_USER=root
       - DB_PASSWORD=${MYSQL_ROOT_PASSWORD}
     networks:
       - db-network
@@ -90,8 +90,8 @@ services:
     ports:
       - 3000:3000
       - 3001:3001
-    devices:
-      - /dev/dri:/dev/dri #optional
+    #devices:
+    #  - /dev/dri:/dev/dri #optional
     shm_size: "1gb" #optional
     restart: unless-stopped
     networks:
