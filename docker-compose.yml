@@ -1,0 +1,32 @@
+---
+services:
+  phpmyadmin:
+    image: lscr.io/linuxserver/phpmyadmin:latest
+    container_name: phpmyadmin
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+      - PMA_ARBITRARY=1 #optional
+      - PMA_ABSOLUTE_URI=https://phpmyadmin.example.com #optional
+    volumes:
+      - ./volume/phpmyadmin/config:/config
+    ports:
+      - 80:80
+    restart: unless-stopped
+
+  mysql-workbench:
+    image: lscr.io/linuxserver/mysql-workbench:latest
+    container_name: mysql-workbench
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=${TZ}
+    volumes:
+      - ./volume/mysql-workbench/config:/config
+    ports:
+      - 3000:3000
+      - 3001:3001
+    cap_add:
+      - IPC_LOCK
+    restart: unless-stopped
