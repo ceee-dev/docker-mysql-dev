@@ -31,30 +31,30 @@ sudo apt install docker-compose
 ## Clone the repository to your docker host
 
 ```
-git clone https://github.com/ceee-dev/docker-idempiere-11.git
+git clone https://github.com/ceee-dev/docker-mysql-dev.git
 ```
 
 ##  Change the directory 
  
 ```
-cd docker-idempiere-11
+cd docker-mysql-dev
 ```
  
-## Generate `.env` file
+## Creare `.env` file
 
 ```bash
 bash create-env.sh 
 ```
 
-## Deploy iDempiere using `docker-compose` command
+## Deploy mysql using `docker-compose` command
 
 ```
-docker-compose -f docker-stack.yml up -d
+docker-compose up -d
 ```
-## Observing iDempiere docker logs 
+## Observing mysql docker logs 
 
 ```bash
-docker-compose -f docker-stack.yml logs -f
+docker-compose  logs -f
 ```
 
 `Note:`  Press  ```Ctrl + C``` to exit from log interface
