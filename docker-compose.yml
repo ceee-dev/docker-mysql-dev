@@ -15,7 +15,7 @@ services:
       - 80:80
     restart: unless-stopped
     networks:
-      db-network: 
+      - db-network 
 
   mysql-workbench:
     image: lscr.io/linuxserver/mysql-workbench:latest
@@ -33,7 +33,7 @@ services:
       - IPC_LOCK
     restart: unless-stopped
     networks:
-      db-network: 
+      - db-network 
 
   percona-server:
     image: percona/percona-server:8.0
@@ -47,7 +47,7 @@ services:
       # bind mount my local my.cnf
       # ./volume/conf/my.cnf:/etc/my.cnf.d/my.cnf  networks:
     networks:
-      db-network:   
+      - db-network   
 
 # uncomment sections below if you want to enable PMM
   pmm-server:
@@ -57,6 +57,9 @@ services:
     environment:
       - SERVER_USER=pmm
       - SERVER_PASSWORD=pmm
+    networks:
+      - db-network
+
   pmm-client-ps:
     image: perconalab/pmm-client:latest
     environment:
@@ -69,7 +72,7 @@ services:
      - DB_USER=root
      - DB_PASSWORD=${MYSQL_ROOT_PASSWORD}
   networks:
-    db-network:
+    - db-network
 
 networks:
   db-network:
