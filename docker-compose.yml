@@ -95,6 +95,8 @@ services:
       - /dev/dri:/dev/dri #optional
     shm_size: "1gb" #optional
     restart: unless-stopped
+    networks:
+      - db-network
 
 networks:
   db-network:
