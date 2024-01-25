@@ -1,4 +1,4 @@
-# Docker MySQL8 Deployment Enviorenment
+# Docker MySQL8 Development Enviorenment
 
 ## Install `docker` on your host system
 
