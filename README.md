@@ -55,11 +55,11 @@ docker-compose up -d
 
 ```bash
 docker-compose  logs -f
-```m
+```
 
 `Note:`  Press  ```Ctrl + C``` to exit from log interface
 
-## Unstalling 
+## Unstalling and  cleaning up
 
 ```bash
 docker-compose -f down -v --rmi all --remove-orphans
