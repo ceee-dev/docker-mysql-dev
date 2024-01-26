@@ -50,7 +50,7 @@ services:
       - /volume/mariadb/config:/config
     ports:
       - 3306:3306
-    restart: unles-stopped
+    restart: unless-stopped
     networks:
       - db-network
   
