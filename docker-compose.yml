@@ -102,6 +102,24 @@ services:
     restart: unless-stopped
     networks:
       - db-network
+      
+  remmina:
+    image: lscr.io/linuxserver/remmina:latest
+    container_name: remmina
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=${TZ}
+      - CUSTOM_PORT=6000
+      - CUSTOM_HTTPS_PORT=6001
+    volumes:
+      - /path/to/config:/config
+    ports:
+      - 6000:6000
+      - 6001:6001
+    restart: unless-stopped
+    networks:
+      - db-network
 
 networks:
   db-network:
