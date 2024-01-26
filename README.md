@@ -55,14 +55,14 @@ docker-compose up -d
 
 ```bash
 docker-compose  logs -f
-```
+```m
 
 `Note:`  Press  ```Ctrl + C``` to exit from log interface
 
-## Removing iDempiere docker 
+## Unstalling 
 
 ```bash
-docker-compose -f docker-stack.yml down -v --rmi all --remove-orphans
+docker-compose -f down -v --rmi all --remove-orphans
 ```
 
 
