@@ -80,6 +80,29 @@ services:
     networks:
       - db-network
 
+  vscodium:
+    image: lscr.io/linuxserver/vscodium:latest
+    container_name: vscodium
+    cap_add:
+      - IPC_LOCK
+    security_opt:
+      - seccomp:unconfined #optional
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=${TZ}
+      - CUSTOM_PORT=4000
+      - CUSTOM_HTTPS_PORT=4001
+    volumes:
+      - /path/to/config:/config
+    ports:
+      - 4000:4000
+      - 4001:4001
+    shm_size: "1gb"
+    restart: unless-stopped
+    networks:
+      - db-network
+
 networks:
   db-network:
     driver: bridge
