@@ -94,7 +94,7 @@ services:
       - CUSTOM_PORT=4000
       - CUSTOM_HTTPS_PORT=4001
     volumes:
-      - /path/to/config:/config
+      - ./volume/vscodium/config:/config
     ports:
       - 4000:4000
       - 4001:4001
